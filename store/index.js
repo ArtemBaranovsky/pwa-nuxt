@@ -20,8 +20,10 @@ export const mutations = {
 // ACTION - async (dispatch)
 export const actions = {
   async nuxtServerInit({dispatch, commit, store, getters}) {
+    await dispatch('category/setCategoryTree');
     await Promise.all([
       dispatch('setStoreConfig')
+      // dispatch('setStoreConfig')
     ])
   },
   async setStoreConfig({commit, dispatch, state}) {
