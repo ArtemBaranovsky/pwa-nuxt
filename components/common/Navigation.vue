@@ -1,22 +1,10 @@
 <template>
   <div>
     <v-list dense>
-      <v-list-item nuxt :to="{name: 'test'}" exact
+      <v-list-item nuxt v-for="(item, index) in categoryTree" :key="index" :to="{path: `/${item.url_path}${storeConfig.category_url_suffix}`}" exact
       >
         <v-list-item-content>
-          <v-list-item-title>Home page</v-list-item-title>
-        </v-list-item-content>
-      </v-list-item>
-      <v-list-item nuxt :to="{name: 'category-slug', params: {slug: 'test'}}"
-      >
-        <v-list-item-content>
-          <v-list-item-title>Test Category</v-list-item-title>
-        </v-list-item-content>
-      </v-list-item>
-      <v-list-item nuxt :to="{name: 'category-slug', params: {slug: 'retest'}}"
-      >
-        <v-list-item-content>
-          <v-list-item-title>Retest Category</v-list-item-title>
+          <v-list-item-title>{{ item.name }}</v-list-item-title>
         </v-list-item-content>
       </v-list-item>
     </v-list>
@@ -24,8 +12,16 @@
 </template>
 
 <script>
+import {mapGetters} from 'vuex';
+
 export default {
-  name: "AppNavigation"
+  name: "AppNavigation",
+  computed: {
+    ...mapGetters({
+      storeConfig: 'storeConfig',
+      categoryTree: 'category/tree'
+    })
+  }
 }
 </script>
 
