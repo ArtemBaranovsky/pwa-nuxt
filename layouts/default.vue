@@ -6,26 +6,8 @@
       clipped
       dark
     >
-      <v-list dense>
-        <v-list-item nuxt :to="{name: 'test'}" exact
-        >
-          <v-list-item-content>
-            <v-list-item-title>Home page</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-        <v-list-item nuxt :to="{name: 'category-slug', params: {slug: 'test'}}"
-        >
-          <v-list-item-content>
-            <v-list-item-title>Test Category</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-        <v-list-item nuxt :to="{name: 'category-slug', params: {slug: 'retest'}}"
-        >
-          <v-list-item-content>
-            <v-list-item-title>Retest Category</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-      </v-list>
+
+      <app-navigation/>
     </v-navigation-drawer>
 
     <v-app-bar
@@ -43,17 +25,19 @@
     <v-content>
       <nuxt/>
     </v-content>
-    <v-footer
-      app
-      dark
-    >
-      <span class="white--text">&copy; {{ new Date().getFullYear() }}</span>
-    </v-footer>
+
+    <app-footer/>
   </v-app>
 </template>
 
 <script>
+import AppNavigation from '~/components/common/Navigation';
+import AppFooter from '~/components/common/Footer';
+
 export default {
+  components: {
+    AppNavigation, AppFooter
+  },
   data: () => ({
     drawer: false
   }),
