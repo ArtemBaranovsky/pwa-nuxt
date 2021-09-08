@@ -22,9 +22,9 @@
       </v-toolbar-title>
     </v-app-bar>
 
-    <v-content>
+    <v-main>
       <nuxt/>
-    </v-content>
+    </v-main>
 
     <app-footer/>
   </v-app>

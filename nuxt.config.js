@@ -1,6 +1,8 @@
-import colors from 'vuetify/es5/util/colors'
+import colors from 'vuetify/es5/util/colors';
+// import { extendRoutes } from '~/.nuxt/routerHelper.modules';
 
 export default {
+  mode: 'universal',
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     titleTemplate: '%s - astri.webinar',
@@ -15,6 +17,11 @@ export default {
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ]
   },
+
+  /*
+  ** Customize the progress-bar color
+  */
+  loading: { color: '#fff' },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
@@ -92,5 +99,19 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
+    // you could extend webpack config here
+    extend(config, ctx) {
+
+    }
+  },
+  router: {
+    middleware: ['magento-url-resolver'],
+    extendRoutes(routes, resolve) {
+      routes.push({
+        name: 'magento',
+        path: '*',
+        component: resolve(__dirname, '~/pages/magento/_id')
+      })
+    }
   }
 }
